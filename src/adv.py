@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -36,9 +36,9 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
+acceptable_values = ('n','s','e','w','q')
 # Make a new player object that is currently in the 'outside' room.
-
+warrior = Player("Hacker", room["outside"])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +49,20 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    current_room = warrior.room
+    
+    print(current_room.name)
+    print(current_room.description)
+    prompt = input("Which way do we go? (type n e s w, q to quit) HP=100 MP=100 $> ")
+    if prompt not in acceptable_values:
+        print("Please type a valid command (n, e, s, w, or q)")
+    elif prompt == 'q':
+        print("Thank you for playing Lambda Quest!")
+        break
+    else:
+        prompt = prompt + '_to'
+        for key, value in room.items():
+            
+                # warrior.change_room(value)
