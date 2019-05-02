@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from colorama import init
+from colorama import init, Fore, Back, Style
 init()
 
 # Declare all the rooms
@@ -39,8 +39,6 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-def print_color(message):
-
 
 def get_room(cmd, current_room):
     # This function uses if statements
@@ -75,9 +73,9 @@ warrior = Player("Hacker", room["outside"])
 # If the user enters "q", quit the game.
 
 while True:
-    print("\n" + warrior.room.name)
-    print("\n" + warrior.room.description)
-    prompt = input("\n\nWhich way do we go?\n (n e s w to move, q to quit) \nHP=100 MP=100 $> ")
+    print(Fore.CYAN + "\n" + warrior.room.name)
+    print(Fore.WHITE + "\n" + warrior.room.description)
+    prompt = input("\n\nWhich way do we go?\n" + Fore.GREEN + "(n e s w to move, q to quit) \n" + Fore.RED + "HP=100 MP=100" + Fore.RESET + " $> ")
     if prompt not in acceptable_values:
         print("Please type a valid command (n, e, s, w, or q)")
     elif prompt == 'q':
