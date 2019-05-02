@@ -1,7 +1,22 @@
 from room import Room
 from player import Player
+from item import Item
 from colorama import init, Fore, Back, Style
 init()
+
+# Declare all the things (pre-classed items)
+things = [
+    ['sword', 'rusty sword'],
+    ['stone', 'large jagged stone'],
+    ['guitar', 'guitar named Red Special'],
+    ['tunic', 'dusty tunic'],
+    ['waterskin', 'rugged leather waterskin'],
+    ['bucket', 'wooden bucket']
+]
+
+# Turn things into items
+
+items = [Item(item[0], item[1]) for item in things]
 
 # Declare all the rooms
 
@@ -21,7 +36,7 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", items[2]),
 }
 
 
@@ -75,6 +90,8 @@ warrior = Player("Hacker", room["outside"])
 while True:
     print(Fore.CYAN + "\n" + warrior.room.name)
     print(Fore.WHITE + "\n" + warrior.room.description)
+    print("\n" + "Items here\n" + "\n==========" + "\n")
+    print(warrior.room.storage)
     prompt = input("\n\nWhich way do we go?\n" + Fore.GREEN + "(n e s w to move, q to quit) \n" + Fore.RED + "HP=100 MP=100" + Fore.RESET + " $> ")
     if prompt not in acceptable_values:
         print("Please type a valid command (n, e, s, w, or q)")

@@ -7,5 +7,5 @@ class Player(NameStorage):
         super().__init__(name, storage=storage)
         self.room = room
     
-    def change_room(self, room):
-        self.room = room
+    def change_room(self, new_room):
+        self.room = new_room
